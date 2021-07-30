@@ -1,4 +1,4 @@
 # TP1_200028154
  ### Autor: Thiago Ribeiro Freitas
  ### Matrícula: 200028154
- ### Descrição: Trabalho Pratico 1 Orientação à Objetos 
+ ### Descrição: Trabalho Prático 1 da disciplina de Orientação à Objetos, lecionada pela professora Fabiana Mendes, da Universidade de Brasília.
