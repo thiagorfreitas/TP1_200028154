@@ -1,13 +1,28 @@
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Principal {
     public static void main(String[] args) {
         String[][] clientes = new String[20][3]; // Declaração da tabela (matriz bidimensional) de Clientes
         String[][] produtos = new String[20][5]; // Declaração da tabela (matriz bidimensional) de Produtos
-        int totalClientes = 0; // Contador do total de clientes, usado ao tentar cadastrar clientes em dois momentos diferentes
-        int totalProdutos = 0; // Contador do total de produtos, usado ao tentar cadastrar produtos em dois momentos diferentes
+        int totalClientes = 10; // Contador do total de clientes, usado ao tentar cadastrar clientes em dois momentos diferentes
+        int totalProdutos = 10; // Contador do total de produtos, usado ao tentar cadastrar produtos em dois momentos diferentes
+        int c, p;
+        Random gerador = new Random();
         Scanner input = new Scanner(System.in);
+        for(c = 0; c < 10; c++){ // Pré cadastro de 10 Clientes
+            clientes[c][0] = "Cliente " + c; // Nome de Cliente aleatório
+            clientes[c][1] = "Casa " + gerador.nextInt(11); // Número de casa aleatória (Endereço)
+            clientes[c][2] = "61" + gerador.nextInt(1000000000); // Número de telefone aleatório
+        }
+        for(p = 0; p < 10; p++){
+            produtos[p][0] = "Produto " + p; // Nome de Produto aleatório
+            produtos[p][1] = "Este produto foi pré cadastrado"; // Descrição Padrão de Produto Pré Cadastrado
+            produtos[p][2] = "R$" + gerador.nextInt(100) + "." + gerador.nextInt(100); //Valor de Produto aleatório
+            produtos[p][3] = gerador.nextInt(21) + "%"; // Porcentagem de Lucro aleatório
+            produtos[p][4] = String.valueOf(gerador.nextInt(51)); // Quantidade de Produto em estoque aleatório
+        }
         int menu;
         do {
             Interface(); // Método que imprime a inteface do programa
@@ -116,7 +131,7 @@ public class Principal {
                 break;
             }
         }
-        if (!found) { // Caso não seja compatível com nenhum cliente
+        if (found == false) { // Caso não seja compatível com nenhum cliente
             System.out.println("Cliente não encontrado!");
         }
     }
@@ -224,7 +239,7 @@ public class Principal {
         Scanner input = new Scanner(System.in);
         int qtd, i, j, k, b;
         boolean found, found2;
-        String buscaCliente, buscaProd;
+        String buscaCli, buscaProd;
         found = false;
         found2 = false;
 
@@ -233,10 +248,10 @@ public class Principal {
             System.out.println(" | [" + b + "] " + clientes[b][0] + " |"); // Impressão da Lista de Clientes
         }
         System.out.println("------------------------------------------------------------");
-        System.out.println("Digite o nome do cliente que deseja realizar a compra: ");
-        buscaCliente = input.nextLine();
+        System.out.println("Digite o nome do cliente que deseja realizar a compra ou digite Sair para voltar ao Menu: ");
+        buscaCli = input.nextLine();
         for (i = 0; i < totalClientes; i++) {
-            if (buscaCliente.toLowerCase().equals(clientes[i][0].toLowerCase())) { // Nova pesquisa de Clientes
+            if (buscaCli.toLowerCase().equals(clientes[i][0].toLowerCase())) { // Nova pesquisa de Clientes
                 System.out.println("Cliente selecionado: " + clientes[i][0]);
                 found = true;
                 do {
@@ -267,7 +282,7 @@ public class Principal {
                         }
                         System.out.println("-------------------------------------------------------------------------------------");
                     }
-                } while (buscaProd.toLowerCase().equals( "Sair".toLowerCase()) == false || buscaCliente.toLowerCase().equals("Sair".toLowerCase()) == false); // Saída do Laço de repetição da lista de produtos
+                } while (buscaProd.toLowerCase().equals( "Sair".toLowerCase()) == false || buscaCli.toLowerCase().equals("Sair".toLowerCase()) == false); // Saída do Laço de repetição da lista de produtos
             } if (found == false) { // Não há cliente compatível com a pesquisa
                 System.out.println("Cliente não encontrado!");
             }
