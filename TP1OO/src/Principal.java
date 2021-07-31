@@ -83,7 +83,7 @@ public class Principal {
         System.out.println("Digite o nome do cliente que deseja Buscar:");
         String busca = input.nextLine();
         for (i = 0; i <= total; i++) {
-            if (busca.toLowerCase().equals(clientes[i][0].toLowerCase())) { // Verificação se a string pesquisada é compatível como algum dos clientes (Não é case sensitive graças ao .toLowerCase)
+            if (busca.equals(clientes[i][0])) { // Verificação se a string pesquisada é compatível como algum dos clientes (Case sensitive)
                 System.out.println("--------------- Dados do Cliente ---------------");
                 System.out.println(" Nome do Cliente: " + clientes[i][0]);
                 System.out.println(" Endereço do Cliente: " + clientes[i][1]);
@@ -166,7 +166,7 @@ public class Principal {
         System.out.println("Digite o nome do produto que deseja Buscar:");
         String busca = input.nextLine();
         for (i = 0; i <= total; i++) {
-            if (busca.toLowerCase().equals(produtos[i][0].toLowerCase())) { // Verificação se a string pesquisada é compatível como algum dos produtos (Não é case sensitive graças ao .toLowerCase)
+            if (busca.equals(produtos[i][0])) { // Verificação se a string pesquisada é compatível como algum dos produtos (Não é case sensitive graças ao .toLowerCase)
                 System.out.println("--------------- Dados do Produto ---------------");
                 System.out.println(" Nome do Produto: " + produtos[i][0]);
                 System.out.println(" Descrição do Produto: " + produtos[i][1]);
@@ -251,10 +251,9 @@ public class Principal {
         System.out.println("Digite o nome do cliente que deseja realizar a compra ou digite Sair para voltar ao Menu: ");
         buscaCli = input.nextLine();
         for (i = 0; i < totalClientes; i++) {
-            if (buscaCli.toLowerCase().equals(clientes[i][0].toLowerCase())) { // Nova pesquisa de Clientes
+            if (buscaCli.equals(clientes[i][0])) { // Nova pesquisa de Clientes
                 System.out.println("Cliente selecionado: " + clientes[i][0]);
                 found = true;
-                do {
                     System.out.println("----------------------------------------");
                     for (j = 0; j < totalProdutos; j++) {
                         if (Integer.parseInt(produtos[j][4]) > 0) {
@@ -265,7 +264,7 @@ public class Principal {
                     System.out.println("Digite o nome do produto que o cliente deseja comprar ou Sair para voltar ao menu: ");
                     buscaProd = input.nextLine();
                     for (k = 0; k < totalProdutos; k++) {
-                        if (buscaProd.toLowerCase().equals(produtos[k][0].toLowerCase())) { // Nova pesquisa de Produtos
+                        if (buscaProd.equals(produtos[k][0])) { // Nova pesquisa de Produtos
                             System.out.println("Produto selecionado: " + produtos[k][0]);
                             found2 = true;
                             System.out.println("Insira a quantidade do produto que o Cliente deseja comprar: ");
@@ -282,7 +281,7 @@ public class Principal {
                         }
                         System.out.println("-------------------------------------------------------------------------------------");
                     }
-                } while (buscaProd.toLowerCase().equals( "Sair".toLowerCase()) == false || buscaCli.toLowerCase().equals("Sair".toLowerCase()) == false); // Saída do Laço de repetição da lista de produtos
+
             } if (found == false) { // Não há cliente compatível com a pesquisa
                 System.out.println("Cliente não encontrado!");
             }
